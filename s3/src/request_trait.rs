@@ -42,7 +42,7 @@ pub trait Request {
     async fn response(&self) -> Result<Self::Response, S3Error>;
     async fn response_data(&self, etag: bool) -> Result<ResponseData, S3Error>;
     #[cfg(feature = "with-tokio")]
-    async fn response_data_to_writer<T: tokio::io::AsyncWrite + Send + Unpin>(
+    async fn response_data_to_writer<T: tokio::io::AsyncWrite + Send + Sync + Unpin>(
         &self,
         writer: &mut T,
     ) -> Result<u16, S3Error>;

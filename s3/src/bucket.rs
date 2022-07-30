@@ -763,7 +763,7 @@ impl Bucket {
     /// # }
     /// ```
     #[maybe_async::async_impl]
-    pub async fn get_object_stream<T: AsyncWrite + Send + Unpin, S: AsRef<str>>(
+    pub async fn get_object_stream<T: AsyncWrite + Send + Sync + Unpin, S: AsRef<str>>(
         &self,
         path: S,
         writer: &mut T,

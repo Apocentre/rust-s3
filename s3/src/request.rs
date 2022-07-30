@@ -114,7 +114,7 @@ impl<'a> Request for Reqwest<'a> {
         Ok(ResponseData::new(body_vec, status_code))
     }
 
-    async fn response_data_to_writer<T: tokio::io::AsyncWrite + Send + Unpin>(
+    async fn response_data_to_writer<T: tokio::io::AsyncWrite + Send + Sync + Unpin>(
         &self,
         writer: &mut T,
     ) -> Result<u16, S3Error> {
